@@ -89,12 +89,22 @@ export function callback(
 
       if (config.server) {
         const configServerUrl = new URL(config.server);
-        if (originHostUrl.hostname !== configServerUrl.hostname) {
-          // Not sure if this can actually happen but without returning an error here,
-          // this would fail downstream when attempting to authenticate to the REST API.
+        const originHostname = originHostUrl.hostname;
+        const configHostname = configServerUrl.hostname;
+
+        // For Tableau Cloud, be more flexible - allow any Tableau Cloud pod
+        // Tableau Cloud may return a different pod hostname than configured
+        const isTableauCloud = (hostname: string): boolean =>
+          hostname.includes('online.tableau.com') || hostname.endsWith('.online.tableau.com');
+
+        if (isTableauCloud(originHostname) && isTableauCloud(configHostname)) {
+          // Both are Tableau Cloud domains - allow any Tableau Cloud pod
+          // The originHost from Tableau is authoritative, so we trust it
+        } else if (originHostname !== configHostname) {
+          // For Tableau Server, strict validation still applies
           res.status(400).json({
             error: 'invalid_request',
-            error_description: `Invalid origin host: ${originHost}. Expected: ${new URL(config.server).hostname}`,
+            error_description: `Invalid origin host: ${originHost}. Expected: ${configHostname}`,
           });
           return;
         }

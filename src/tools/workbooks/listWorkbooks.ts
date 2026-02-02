@@ -22,41 +22,7 @@ export const getListWorkbooksTool = (server: Server): Tool<typeof paramsSchema> 
   const listWorkbooksTool = new Tool({
     server,
     name: 'list-workbooks',
-    description: `
-  Retrieves a list of workbooks on a Tableau site including their metadata such as name, description, and information about the views contained in the workbook. Supports optional filtering via field:operator:value expressions (e.g., name:eq:Superstore) for precise and flexible workbook discovery. Use this tool when a user requests to list, search, or filter Tableau workbooks on a site.
-
-  **Supported Filter Fields and Operators**
-  | Field             | Operators            |
-  |-------------------|----------------------|
-  | createdAt         | eq, gt, gte, lt, lte |
-  | contentUrl        | eq, in               |
-  | displayTabs       | eq                   |
-  | favoritesTotal    | eq, gt, gte, lt, lte |
-  | hasAlerts         | eq                   |
-  | hasExtracts       | eq                   |
-  | name              | eq, in               |
-  | ownerDomain       | eq, in               |
-  | ownerEmail        | eq, in               |
-  | ownerName         | eq, in               |
-  | projectName       | eq, in               |
-  | sheetCount        | eq, gt, gte, lt, lte |
-  | size              | eq, gt, gte, lt, lte |
-  | subscriptionTotal | eq, gt, gte, lt, lte |
-  | tags              | eq, in               |
-  | updatedAt         | eq, gt, gte, lt, lte |
-
-  ${genericFilterDescription}
-
-  **Example Usage:**
-  - List all workbooks on a site
-  - List workbooks with the name "Superstore":
-      filter: "name:eq:Superstore"
-  - List workbooks in the "Finance" project:
-      filter: "projectName:eq:Finance"
-  - List workbooks created after January 1, 2023:
-      filter: "createdAt:gt:2023-01-01T00:00:00Z"
-  - List workbooks with the name "Superstore" in the "Finance" project and created after January 1, 2023:
-      filter: "name:eq:Superstore,projectName:eq:Finance,createdAt:gt:2023-01-01T00:00:00Z"`,
+    description: `Retrieves a list of workbooks on a Tableau site including their metadata such as name, description, and information about the views contained in the workbook. Supports optional filtering via field:operator:value expressions (e.g., name:eq:Superstore) for precise workbook discovery.`,
     paramsSchema,
     annotations: {
       title: 'List Workbooks',

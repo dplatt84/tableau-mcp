@@ -17,17 +17,8 @@ export const getListPulseMetricSubscriptionsTool = (server: Server): Tool<typeof
     server,
     name: 'list-pulse-metric-subscriptions',
     description: `
-Retrieves a list of published Pulse Metric Subscriptions for the current user using the Tableau REST API.  Use this tool when a user requests to list Tableau Pulse Metric Subscriptions for the current user.
-
-**Example Usage:**
-- List all Pulse Metric Subscriptions for the current user on the current site
-- List all of my Pulse Metric Subscriptions
-
-**Note:**
-- This tool does not directly provide information about Pulse Metric Definitions.  If you need to know information about Pulse Metric Defintiions associated with your subscriptions you need to:
-  1. Retrieve Pulse Metrics from the metric ids returned in the Pulse Metric Subscriptions.
-  2. Retrieve Pulse Metric Definitions from the metric definition id returned in the Pulse Metrics.
-`,
+    Retrieves Pulse Metric Subscriptions for the current user using Tableau REST API. Use when user requests to list Pulse Metric Subscriptions for current user. EXAMPLES: List all Pulse Metric Subscriptions for current user on current site. List all of my Pulse Metric Subscriptions. NOTES: This tool does not directly provide information about Pulse Metric Definitions. To get information about Pulse Metric Definitions associated with subscriptions you need to: 1. Retrieve Pulse Metrics from the metric ids returned in the Pulse Metric Subscriptions. 2. Retrieve Pulse Metric Definitions from the metric definition id returned in the Pulse Metrics.
+    `,
     paramsSchema,
     annotations: {
       title: 'List Pulse Metric Subscriptions for Current User',

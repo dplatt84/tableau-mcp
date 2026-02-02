@@ -91,6 +91,19 @@ export async function startExpressServer({
   if (!existsSync(config.sslCert)) {
     throw new Error('SSL cert file does not exist');
   }
+  // Add routes for /tableau-mcp/mcp (some clients append /mcp to the base path)
+  const mcpPath = `${path}/mcp`;
+  app.post(mcpPath, ...middleware, createMcpServer);
+  app.get(
+    mcpPath,
+    ...middleware,
+    config.disableSessionManagement ? methodNotAllowed : handleSessionRequest,
+  );
+  app.delete(
+    mcpPath,
+    ...middleware,
+    config.disableSessionManagement ? methodNotAllowed : handleSessionRequest,
+  );
 
   const options = {
     key: fs.readFileSync(config.sslKey),

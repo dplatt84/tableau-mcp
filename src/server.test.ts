@@ -2,6 +2,7 @@ import { exportedForTesting as serverExportedForTesting } from './server.js';
 import { getQueryDatasourceTool } from './tools/queryDatasource/queryDatasource.js';
 import { toolNames } from './tools/toolName.js';
 import { toolFactories } from './tools/tools.js';
+import { normalizeDescription } from './utils/normalizeDescription.js';
 import { Provider } from './utils/provider.js';
 
 const { Server } = serverExportedForTesting;
@@ -27,9 +28,10 @@ describe('server', () => {
 
     const tools = toolFactories.map((toolFactory) => toolFactory(server));
     for (const tool of tools) {
+      const resolvedDescription = await Provider.from(tool.description);
       expect(server.tool).toHaveBeenCalledWith(
         tool.name,
-        await Provider.from(tool.description),
+        normalizeDescription(resolvedDescription),
         expect.any(Object),
         expect.any(Object),
         expect.any(Function),
@@ -43,9 +45,10 @@ describe('server', () => {
     await server.registerTools();
 
     const tool = getQueryDatasourceTool(server);
+    const resolvedDescription = await Provider.from(tool.description);
     expect(server.tool).toHaveBeenCalledWith(
       tool.name,
-      await Provider.from(tool.description),
+      normalizeDescription(resolvedDescription),
       expect.any(Object),
       expect.any(Object),
       expect.any(Function),
@@ -59,10 +62,11 @@ describe('server', () => {
 
     const tools = toolFactories.map((toolFactory) => toolFactory(server));
     for (const tool of tools) {
+      const resolvedDescription = await Provider.from(tool.description);
       if (tool.name === 'query-datasource') {
         expect(server.tool).not.toHaveBeenCalledWith(
           tool.name,
-          tool.description,
+          normalizeDescription(resolvedDescription),
           expect.any(Object),
           expect.any(Object),
           expect.any(Function),
@@ -70,7 +74,7 @@ describe('server', () => {
       } else {
         expect(server.tool).toHaveBeenCalledWith(
           tool.name,
-          tool.description,
+          normalizeDescription(resolvedDescription),
           expect.any(Object),
           expect.any(Object),
           expect.any(Function),

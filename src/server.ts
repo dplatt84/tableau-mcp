@@ -8,6 +8,7 @@ import { TableauAuthInfo } from './server/oauth/schemas.js';
 import { Tool } from './tools/tool.js';
 import { toolNames } from './tools/toolName.js';
 import { toolFactories } from './tools/tools.js';
+import { normalizeDescription } from './utils/normalizeDescription.js';
 import { Provider } from './utils/provider.js';
 
 export const serverName = 'tableau-mcp';
@@ -61,9 +62,10 @@ export class Server extends McpServer {
       annotations,
       callback,
     } of this._getToolsToRegister(authInfo)) {
+      const resolvedDescription = await Provider.from(description);
       this.tool(
         name,
-        await Provider.from(description),
+        normalizeDescription(resolvedDescription),
         await Provider.from(paramsSchema),
         await Provider.from(annotations),
         await Provider.from(callback),

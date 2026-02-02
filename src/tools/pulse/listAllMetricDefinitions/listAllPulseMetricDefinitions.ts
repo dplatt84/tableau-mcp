@@ -26,31 +26,8 @@ export const getListAllPulseMetricDefinitionsTool = (server: Server): Tool<typeo
     server,
     name: 'list-all-pulse-metric-definitions',
     description: `
-Retrieves a list of all published Pulse Metric Definitions using the Tableau REST API.  Use this tool when a user requests to list all Tableau Pulse Metric Definitions on the current site.
-
-**Parameters:**
-- \`view\` (optional): The range of metrics to return for a definition. The default is 'DEFINITION_VIEW_BASIC' if not specified.
-  - \`DEFINITION_VIEW_BASIC\` - Return only the specified metric definition.
-  - \`DEFINITION_VIEW_FULL\` - Return the metric definition and the specified number of metrics.
-  - \`DEFINITION_VIEW_DEFAULT\` - Return the metric definition and the default metric.
-- \`limit\` (optional): Maximum number of metric definitions to return. If not specified, all definitions are returned.
-- \`pageSize\` (optional): Number of results per page. Controls how many definitions are fetched in each API request during pagination.
-
-**Example Usage:**
-- List all Pulse Metric Definitions on the current site
-- List all Pulse Metric Definitions on the current site with the default view:
-    view: 'DEFINITION_VIEW_DEFAULT'
-- List the first 50 Pulse Metric Definitions:
-    limit: 50
-- List all Pulse Metric Definitions on the current site with the full view:
-    view: 'DEFINITION_VIEW_FULL'
-    In the response you will only get up to 5 metrics, so if you want to see more you need to retrieve all the Pulse Metrics from another tool.
-- List all Pulse Metric Definitions on the current site with the basic view:
-    view: 'DEFINITION_VIEW_BASIC'
-- See all metrics for my Pulse Metric Definitions:
-    view: 'DEFINITION_VIEW_FULL'
-    In the response you will only get up to 5 metrics, so if you want to see more you need to retrieve all the Pulse Metrics from another tool.
-`,
+    Retrieves all published Pulse Metric Definitions using Tableau REST API. Use when user requests to list all Pulse Metric Definitions on current site. PARAMETERS: view optional range of metrics to return default DEFINITION_VIEW_BASIC. DEFINITION_VIEW_BASIC returns only definition. DEFINITION_VIEW_FULL returns definition and specified number of metrics up to 5. DEFINITION_VIEW_DEFAULT returns definition and default metric. limit optional maximum number of definitions to return. pageSize optional number of results per page controls pagination. EXAMPLES: List all definitions. List with default view view DEFINITION_VIEW_DEFAULT. List first 50 limit 50. List with full view view DEFINITION_VIEW_FULL note response includes up to 5 metrics use another tool for more. List with basic view view DEFINITION_VIEW_BASIC.
+    `,
     paramsSchema,
     annotations: {
       title: 'List All Pulse Metric Definitions',

@@ -3,6 +3,7 @@ import express, { RequestHandler } from 'express';
 import { readFileSync } from 'fs';
 
 import { getConfig } from '../../config.js';
+import { mcpDiscovery } from './.well-known/mcp-discovery.js';
 import { oauthAuthorizationServer } from './.well-known/oauth-authorization-server.js';
 import { oauthProtectedResource } from './.well-known/oauth-protected-resource.js';
 import { authMiddleware } from './authMiddleware.js';
@@ -47,6 +48,9 @@ export class OAuthProvider {
 
     // .well-known/oauth-protected-resource
     oauthProtectedResource(app);
+
+    // .well-known/mcp (MCP discovery endpoint)
+    mcpDiscovery(app);
 
     // oauth/register
     register(app);

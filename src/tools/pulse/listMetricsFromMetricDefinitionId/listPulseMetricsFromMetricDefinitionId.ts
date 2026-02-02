@@ -22,14 +22,8 @@ export const getListPulseMetricsFromMetricDefinitionIdTool = (
     server,
     name: 'list-pulse-metrics-from-metric-definition-id',
     description: `
-Retrieves a list of published Pulse Metrics from a Pulse Metric Definition using the Tableau REST API.  Use this tool when a user requests to list Tableau Pulse Metrics for a specific Pulse Metric Definition on the current site.
-
-**Parameters:**
-- \`pulseMetricDefinitionID\` (required): The ID of the Pulse Metric Definition to list metrics for.  It should be the ID of the Pulse Metric Definition, not the name.  Example: BBC908D8-29ED-48AB-A78E-ACF8A424C8C3
-
-**Example Usage:**
-- List all Pulse Metrics for this Pulse Metric Definition
-`,
+    Retrieves published Pulse Metrics from a Pulse Metric Definition using Tableau REST API. Use when user requests to list Pulse Metrics for a specific Pulse Metric Definition on current site. PARAMETERS: pulseMetricDefinitionID required ID of Pulse Metric Definition to list metrics for. Must be the ID not the name. Example format BBC908D8-29ED-48AB-A78E-ACF8A424C8C3. EXAMPLES: List all Pulse Metrics for this Pulse Metric Definition. Provide the pulseMetricDefinitionID from the metric definition you want to query.
+    `,
     paramsSchema,
     annotations: {
       title: 'List Pulse Metrics from Metric Definition ID',

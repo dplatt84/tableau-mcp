@@ -23,55 +23,8 @@ export const getListDatasourcesTool = (server: Server): Tool<typeof paramsSchema
     server,
     name: 'list-datasources',
     description: `
-  Retrieves a list of published data sources from a specified Tableau site using the Tableau REST API. Supports optional filtering via field:operator:value expressions (e.g., name:eq:Views) for precise and flexible data source discovery. Use this tool when a user requests to list, search, or filter Tableau data sources on a site.
-
-  **Supported Filter Fields and Operators**
-  | Field                  | Operators                                 |
-  |------------------------|-------------------------------------------|
-  | authenticationType     | eq, in                                    |
-  | connectedWorkbookType  | eq, gt, gte, lt, lte                      |
-  | connectionTo           | eq, in                                    |
-  | connectionType         | eq, in                                    |
-  | contentUrl             | eq, in                                    |
-  | createdAt              | eq, gt, gte, lt, lte                      |
-  | databaseName           | eq, in                                    |
-  | databaseUserName       | eq, in                                    |
-  | description            | eq, in                                    |
-  | favoritesTotal         | eq, gt, gte, lt, lte                      |
-  | hasAlert               | eq                                        |
-  | hasEmbeddedPassword    | eq                                        |
-  | hasExtracts            | eq                                        |
-  | isCertified            | eq                                        |
-  | isConnectable          | eq                                        |
-  | isDefaultPort          | eq                                        |
-  | isHierarchical         | eq                                        |
-  | isPublished            | eq                                        |
-  | name                   | eq, in                                    |
-  | ownerDomain            | eq, in                                    |
-  | ownerEmail             | eq                                        |
-  | ownerName              | eq, in                                    |
-  | projectName*           | eq, in                                    |
-  | serverName             | eq, in                                    |
-  | serverPort             | eq                                        |
-  | size                   | eq, gt, gte, lt, lte                      |
-  | tableName              | eq, in                                    |
-  | tags                   | eq, in                                    |
-  | type                   | eq                                        |
-  | updatedAt              | eq, gt, gte, lt, lte                      |
-
-  ${genericFilterDescription}
-
-  **Example Usage:**
-  - List all data sources on a site
-  - List data sources with the name "Project Views":
-      filter: "name:eq:Project Views"
-  - List data sources in the "Finance" project:
-      filter: "projectName:eq:Finance"
-  - List data sources created after January 1, 2023:
-      filter: "createdAt:gt:2023-01-01T00:00:00Z"
-  - List data sources with the name "Project Views" in the "Finance" project and created after January 1, 2023:
-      filter: "name:eq:Project Views,projectName:eq:Finance,createdAt:gt:2023-01-01T00:00:00Z"
-  `,
+    Retrieves published data sources from a Tableau site. Supports filtering via field:operator:value expressions. Use to list search or filter data sources. FILTER FIELDS: authenticationType connectionTo connectionType contentUrl createdAt databaseName description favoritesTotal hasAlert hasEmbeddedPassword hasExtracts isCertified isConnectable isPublished name ownerDomain ownerEmail ownerName projectName serverName size tableName tags type updatedAt. OPERATORS: eq equals gt greater than gte greater equal in list lt less than lte less equal. SYNTAX: Format field:operator:value multiple filters comma-separated case-sensitive. Date format ISO 8601 like 2023-01-01T00:00:00Z. Wildcards use star for matching. Values cannot contain special chars or commas. EXAMPLES: Empty filter lists all. name:eq:Project Views filters by name. projectName:eq:Finance filters by project. Combined name:eq:Views,projectName:eq:Finance,createdAt:gt:2023-01-01T00:00:00Z.
+    `,
     paramsSchema,
     annotations: {
       title: 'List Datasources',

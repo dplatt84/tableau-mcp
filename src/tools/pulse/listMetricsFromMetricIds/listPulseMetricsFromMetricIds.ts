@@ -18,20 +18,8 @@ export const getListPulseMetricsFromMetricIdsTool = (server: Server): Tool<typeo
     server,
     name: 'list-pulse-metrics-from-metric-ids',
     description: `
-Retrieves a list of published Pulse Metrics from a list of metric IDs using the Tableau REST API.  Use this tool when a user requests to list Tableau Pulse Metrics for a list of metric IDs on the current site.
-
-**Parameters:**
-- \`metricIds\` (required): The list of Pulse Metric IDs to list metrics for.  It should be the list of metric IDs, not the names or metric definition ids.  Example: ['CF32DDCC-362B-4869-9487-37DA4D152552', 'CF32DDCC-362B-4869-9487-37DA4D152553']
-   - For data in a Pulse Metric Subscription, use the metric_id field.
-
-**Example Usage:**
-- List all Pulse Metrics from a list of Pulse Metric IDs
-
-**Note:**
-- This tool is recommended for use with data in Pulse Metric Subscriptions.
-- 00000000-0000-0000-0000-000000000000 is not a valid datasource id.
-- If you need a valid datasource id, you may need to retrieve the Pulse Metric Definition for the Pulse Metric which should have a valid datasource information.
-`,
+    Retrieves published Pulse Metrics from a list of metric IDs using Tableau REST API. Use when user requests to list Pulse Metrics for a list of metric IDs on current site. PARAMETERS: metricIds required array of Pulse Metric IDs to list metrics for. Must be metric IDs not names or metric definition IDs. Example format array with CF32DDCC-362B-4869-9487-37DA4D152552 CF32DDCC-362B-4869-9487-37DA4D152553. For data in Pulse Metric Subscription use the metric_id field. EXAMPLES: List all Pulse Metrics from a list of Pulse Metric IDs. NOTES: Recommended for use with data in Pulse Metric Subscriptions. 00000000-0000-0000-0000-000000000000 is not a valid datasource id. To get valid datasource id retrieve the Pulse Metric Definition for the Pulse Metric which should have valid datasource information.
+    `,
     paramsSchema,
     annotations: {
       title: 'List Pulse Metrics from Metric IDs',
