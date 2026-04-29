@@ -1,6 +1,7 @@
 import { getSearchContentTool } from './contentExploration/searchContent.js';
 import { getGetDatasourceMetadataTool } from './getDatasourceMetadata/getDatasourceMetadata.js';
 import { getListDatasourcesTool } from './listDatasources/listDatasources.js';
+import { getAnswerPulseQuestionTool } from './pulse/answerPulseQuestion/answerPulseQuestionTool.js';
 import { getGeneratePulseInsightBriefTool } from './pulse/generateInsightBrief/generatePulseInsightBriefTool.js';
 import { getGeneratePulseMetricValueInsightBundleTool } from './pulse/generateMetricValueInsightBundle/generatePulseMetricValueInsightBundleTool.js';
 import { getListAllPulseMetricDefinitionsTool } from './pulse/listAllMetricDefinitions/listAllPulseMetricDefinitions.js';
@@ -26,6 +27,7 @@ export const toolFactories = [
   getListPulseMetricSubscriptionsTool,
   getGeneratePulseMetricValueInsightBundleTool,
   getGeneratePulseInsightBriefTool,
+  getAnswerPulseQuestionTool,
   getGetWorkbookTool,
   getGetViewDataTool,
   getGetViewImageTool,
