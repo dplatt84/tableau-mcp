@@ -1,9 +1,14 @@
 import { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 
+import { getConfig } from '../../../config.js';
 import { useRestApi } from '../../../restApiInstance.js';
-import { actionTypeEnumSchema, PulseInsightBriefResponse } from '../../../sdks/tableau/types/pulse.js';
+import {
+  actionTypeEnumSchema,
+  PulseInsightBriefResponse,
+} from '../../../sdks/tableau/types/pulse.js';
 import { Server } from '../../../server.js';
+import { getTableauAuthInfo } from '../../../server/oauth/getTableauAuthInfo.js';
 import { Tool } from '../../tool.js';
 
 const paramsSchema = {
@@ -50,80 +55,104 @@ If no metric names are provided, all metrics from the same datasource are includ
       readOnlyHint: true,
       openWorldHint: false,
     },
-    callback: async ({ question, actionType, metricNames }, extra): Promise<CallToolResult> => {
+    callback: async (
+      { question, actionType, metricNames },
+      { requestId, authInfo, signal },
+    ): Promise<CallToolResult> => {
+      const config = getConfig();
+
       return await tool.logAndExecute<PulseInsightBriefResponse>({
-        extra,
+        requestId,
+        authInfo,
         args: { question, actionType, metricNames },
         callback: async () => {
-          return await useRestApi({
-            ...extra,
-            jwtScopes: tool.requiredApiScopes,
-            callback: async (restApi) => {
-              // Step 1: fetch all definitions with full view to get extension/representation options
-              const defsResult =
-                await restApi.pulseMethods.listAllPulseMetricDefinitions('DEFINITION_VIEW_FULL');
-              if (defsResult.isErr()) return defsResult;
+          // Step 1: fetch all definitions with full view
+          const defsResult = await useRestApi({
+            config,
+            requestId,
+            server,
+            jwtScopes: ['tableau:insight_definitions_metrics:read'],
+            signal,
+            authInfo: getTableauAuthInfo(authInfo),
+            callback: async (restApi) =>
+              restApi.pulseMethods.listAllPulseMetricDefinitions('DEFINITION_VIEW_FULL'),
+          });
 
-              const { definitions } = defsResult.value;
-              if (definitions.length === 0) {
-                throw new Error('No Pulse metric definitions found on this site.');
-              }
+          if (defsResult.isErr()) return defsResult;
+          const { definitions } = defsResult.value;
 
-              // Step 2: filter to requested metric names, or default to all
-              const filteredDefs = metricNames
-                ? definitions.filter((d) =>
-                    metricNames.some(
-                      (name) => name.toLowerCase() === d.metadata.name.toLowerCase(),
-                    ),
-                  )
-                : definitions;
+          if (definitions.length === 0) {
+            throw new Error('No Pulse metric definitions found on this site.');
+          }
 
-              if (filteredDefs.length === 0) {
-                throw new Error(
-                  `No metrics found matching: ${metricNames?.join(', ')}. ` +
-                    `Available metrics: ${definitions.map((d) => d.metadata.name).join(', ')}`,
-                );
-              }
+          // Step 2: filter to requested metric names, or default to all
+          const filteredDefs = metricNames
+            ? definitions.filter((d) =>
+                metricNames.some((name) => name.toLowerCase() === d.metadata.name.toLowerCase()),
+              )
+            : definitions;
 
-              // Step 3: fetch a metric instance for each definition (needed for metric_id + metric_specification)
-              const metricContexts = (
-                await Promise.all(
-                  filteredDefs.map(async (def) => {
-                    const metricsResult =
-                      await restApi.pulseMethods.listPulseMetricsFromMetricDefinitionId(
-                        def.metadata.id,
-                      );
-                    if (metricsResult.isErr()) return null;
+          if (filteredDefs.length === 0) {
+            throw new Error(
+              `No metrics found matching: ${metricNames?.join(', ')}. ` +
+                `Available metrics: ${definitions.map((d) => d.metadata.name).join(', ')}`,
+            );
+          }
 
-                    const metric =
-                      metricsResult.value.find((m) => m.is_default) ?? metricsResult.value[0];
-                    if (!metric) return null;
+          // Step 3: fetch a metric instance for each definition
+          const metricContexts = (
+            await Promise.all(
+              filteredDefs.map(async (def) => {
+                const metricsResult = await useRestApi({
+                  config,
+                  requestId,
+                  server,
+                  jwtScopes: ['tableau:insight_definitions_metrics:read'],
+                  signal,
+                  authInfo: getTableauAuthInfo(authInfo),
+                  callback: async (restApi) =>
+                    restApi.pulseMethods.listPulseMetricsFromMetricDefinitionId(def.metadata.id),
+                });
 
-                    return {
-                      metadata: {
-                        name: def.metadata.name,
-                        metric_id: metric.id,
-                        definition_id: metric.definition_id,
-                      },
-                      metric: {
-                        definition: def.specification,
-                        metric_specification: metric.specification,
-                        extension_options: def.extension_options,
-                        representation_options: def.representation_options,
-                        insights_options: def.insights_options,
-                        candidates: [],
-                      },
-                    };
-                  }),
-                )
-              ).filter((ctx) => ctx !== null);
+                if (metricsResult.isErr()) return null;
 
-              if (metricContexts.length === 0) {
-                throw new Error('Could not retrieve metric instances for any of the matched definitions.');
-              }
+                const metric =
+                  metricsResult.value.find((m) => m.is_default) ?? metricsResult.value[0];
+                if (!metric) return null;
 
-              // Step 4: call the insight brief with the assembled context
-              return await restApi.pulseMethods.generatePulseInsightBrief({
+                return {
+                  metadata: {
+                    name: def.metadata.name,
+                    metric_id: metric.id,
+                    definition_id: metric.definition_id,
+                  },
+                  metric: {
+                    definition: def.specification,
+                    metric_specification: metric.specification,
+                    extension_options: def.extension_options,
+                    representation_options: def.representation_options,
+                    insights_options: def.insights_options,
+                    candidates: [],
+                  },
+                };
+              }),
+            )
+          ).filter((ctx) => ctx !== null);
+
+          if (metricContexts.length === 0) {
+            throw new Error('Could not retrieve metric instances for any of the matched definitions.');
+          }
+
+          // Step 4: call the insight brief
+          const briefResult = await useRestApi({
+            config,
+            requestId,
+            server,
+            jwtScopes: ['tableau:insight_brief:create'],
+            signal,
+            authInfo: getTableauAuthInfo(authInfo),
+            callback: async (restApi) =>
+              restApi.pulseMethods.generatePulseInsightBrief({
                 language: 'LANGUAGE_EN_US',
                 locale: 'LOCALE_EN_US',
                 messages: [
@@ -135,16 +164,17 @@ If no metric names are provided, all metrics from the same datasource are includ
                     metric_group_context: metricContexts,
                   },
                 ],
-              });
-            },
+              }),
           });
+
+          return briefResult;
         },
         constrainSuccessResult: (brief) => ({
           type: 'success',
           result: {
-            markup: brief.markup,
-            follow_up_questions: brief.follow_up_questions,
-            not_enough_information: brief.not_enough_information,
+            ...brief,
+            source_insights: undefined,
+            group_context: undefined,
           },
         }),
       });
