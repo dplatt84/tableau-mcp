@@ -139,7 +139,14 @@ If no metric names are provided, all metrics from the same datasource are includ
             },
           });
         },
-        constrainSuccessResult: (brief) => ({ type: 'success', result: brief }),
+        constrainSuccessResult: (brief) => ({
+          type: 'success',
+          result: {
+            markup: brief.markup,
+            follow_up_questions: brief.follow_up_questions,
+            not_enough_information: brief.not_enough_information,
+          },
+        }),
       });
     },
   });
