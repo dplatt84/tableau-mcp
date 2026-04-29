@@ -139,6 +139,7 @@ type SearchItemContent =
   | 'modifiedTime'
   | 'ownerId'
   | 'ownerName'
+  | 'parentWorkbookId'
   | 'parentWorkbookName'
   | 'projectId'
   | 'projectName'
@@ -184,6 +185,9 @@ function getReducedSearchItemContent(
     } else {
       reducedContent.containerName = content.containerName;
     }
+  }
+  if (content.containerId && content.type === 'view') {
+    reducedContent.parentWorkbookId = content.containerId;
   }
   if (content.luid) {
     reducedContent.luid = content.luid;
@@ -300,12 +304,12 @@ export function constrainSearchContent({
 
   if (workbookIds) {
     items = items.filter((item) => {
-      if (
-        item.type === 'workbook' &&
-        typeof item.luid === 'string' &&
-        !workbookIds.has(item.luid)
-      ) {
-        return false;
+      if (item.type === 'workbook' && typeof item.luid === 'string') {
+        return workbookIds.has(item.luid);
+      }
+
+      if (item.type === 'view' && typeof item.parentWorkbookId === 'string') {
+        return workbookIds.has(item.parentWorkbookId);
       }
 
       return true;
