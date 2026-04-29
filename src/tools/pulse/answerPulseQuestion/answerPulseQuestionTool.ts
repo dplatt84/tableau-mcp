@@ -175,7 +175,16 @@ If no metric names are provided, all metrics from the same datasource are includ
             ...brief,
             group_context: undefined,
             source_insights: brief.source_insights?.map(
-              ({ viz: _viz, facts: _facts, table: _table, ...rest }) => rest,
+              ({
+                viz: _viz,
+                facts: _facts,
+                table: _table,
+                id: _id,
+                generation_id: _generation_id,
+                insight_feedback_metadata: _ifm,
+                score: _score,
+                ...rest
+              }) => rest,
             ),
           },
         }),
