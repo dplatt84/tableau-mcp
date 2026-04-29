@@ -173,8 +173,8 @@ If no metric names are provided, all metrics from the same datasource are includ
           type: 'success',
           result: {
             ...brief,
-            source_insights: undefined,
             group_context: undefined,
+            source_insights: brief.source_insights?.map(({ viz: _viz, ...rest }) => rest),
           },
         }),
       });
