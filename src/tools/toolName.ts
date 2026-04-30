@@ -15,6 +15,7 @@ export const toolNames = [
   'generate-pulse-metric-value-insight-bundle',
   'generate-pulse-insight-brief',
   'answer-pulse-question',
+  'discover-pulse',
   'search-content',
 ] as const;
 export type ToolName = (typeof toolNames)[number];
@@ -41,6 +42,7 @@ export const toolGroups = {
     'generate-pulse-metric-value-insight-bundle',
     'generate-pulse-insight-brief',
     'answer-pulse-question',
+    'discover-pulse',
   ],
   'content-exploration': ['search-content'],
 } as const satisfies Record<ToolGroupName, Array<ToolName>>;
