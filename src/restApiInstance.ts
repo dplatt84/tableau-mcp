@@ -28,7 +28,9 @@ type JwtScopes =
   | 'tableau:metric_subscriptions:read'
   | 'tableau:insights:read'
   | 'tableau:views:download'
-  | 'tableau:insight_brief:create';
+  | 'tableau:insight_brief:create'
+  | 'tableau:insight_definitions_metrics:create'
+  | 'tableau:insight_definitions_metrics:update';
 
 const getNewRestApiInstanceAsync = async (
   config: Config,

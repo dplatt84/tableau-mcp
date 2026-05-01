@@ -2,6 +2,10 @@ import { makeApi, makeEndpoint, ZodiosEndpointDefinitions } from '@zodios/core';
 import { z } from 'zod';
 
 import {
+  createPulseDefinitionRequestSchema,
+  createPulseDefinitionResponseSchema,
+  createPulseMetricRequestSchema,
+  createPulseMetricResponseSchema,
   pulseBundleRequestSchema,
   pulseBundleResponseSchema,
   pulseInsightBriefRequestSchema,
@@ -165,6 +169,36 @@ const generatePulseInsightBriefRestEndpoint = makeEndpoint({
   response: pulseInsightBriefResponseSchema,
 });
 
+const createPulseMetricDefinitionRestEndpoint = makeEndpoint({
+  method: 'post',
+  path: '/pulse/definitions',
+  alias: 'createPulseMetricDefinition',
+  description: 'Creates a new Pulse metric definition.',
+  parameters: [
+    {
+      name: 'body',
+      type: 'Body',
+      schema: createPulseDefinitionRequestSchema,
+    },
+  ],
+  response: createPulseDefinitionResponseSchema,
+});
+
+const createPulseMetricRestEndpoint = makeEndpoint({
+  method: 'post',
+  path: '/pulse/metrics%3AgetOrCreate',
+  alias: 'createPulseMetric',
+  description: 'Creates or retrieves a scoped Pulse metric.',
+  parameters: [
+    {
+      name: 'body',
+      type: 'Body',
+      schema: createPulseMetricRequestSchema,
+    },
+  ],
+  response: createPulseMetricResponseSchema,
+});
+
 const pulseApi = makeApi([
   generatePulseMetricValueInsightBundleRestEndpoint,
   generatePulseInsightBriefRestEndpoint,
@@ -173,5 +207,7 @@ const pulseApi = makeApi([
   listPulseMetricsFromMetricDefinitionIdRestEndpoint,
   listPulseMetricSubscriptionsForCurrentUserRestEndpoint,
   listPulseMetricsFromMetricIdsRestEndpoint,
+  createPulseMetricDefinitionRestEndpoint,
+  createPulseMetricRestEndpoint,
 ]);
 export const pulseApis = [...pulseApi] as const satisfies ZodiosEndpointDefinitions;

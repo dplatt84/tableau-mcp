@@ -488,3 +488,94 @@ export type PulseMetricDefinitionView = (typeof pulseMetricDefinitionViewEnum)[n
 export type PulseMetricDefinition = z.infer<typeof pulseMetricDefinitionSchema>;
 export type PulseMetric = z.infer<typeof pulseMetricSchema>;
 export type PulseMetricSubscription = z.infer<typeof pulseMetricSubscriptionSchema>;
+
+// ---- Write API types ----
+
+export const pulseNumberFormatTypeEnum = [
+  'NUMBER_FORMAT_TYPE_NUMBER',
+  'NUMBER_FORMAT_TYPE_CURRENCY',
+  'NUMBER_FORMAT_TYPE_PERCENT',
+  'NUMBER_FORMAT_TYPE_UNSPECIFIED',
+] as const;
+
+export const pulseSentimentTypeEnum = [
+  'SENTIMENT_TYPE_NONE',
+  'SENTIMENT_TYPE_POSITIVE_UP',
+  'SENTIMENT_TYPE_NEGATIVE_UP',
+] as const;
+
+export const pulseAggregationEnum = [
+  'AGG_TYPE_SUM',
+  'AGG_TYPE_COUNT',
+  'AGG_TYPE_COUNTD',
+  'AGG_TYPE_AVG',
+  'AGG_TYPE_MIN',
+  'AGG_TYPE_MAX',
+  'AGG_TYPE_MEDIAN',
+] as const;
+
+export const pulseGranularityEnum = [
+  'GRANULARITY_DAY',
+  'GRANULARITY_WEEK',
+  'GRANULARITY_MONTH',
+  'GRANULARITY_QUARTER',
+  'GRANULARITY_YEAR',
+] as const;
+
+export const createPulseDefinitionRequestSchema = z.object({
+  name: z.string().nonempty(),
+  specification: z.object({
+    datasource: z.object({ id: z.string().nonempty() }),
+    basic_specification: z.object({
+      measure: z.object({
+        field: z.string().nonempty(),
+        aggregation: z.enum(pulseAggregationEnum),
+      }),
+      time_dimension: z.object({ field: z.string().nonempty() }),
+      filters: z.array(pulseFilterSchema).optional().default([]),
+    }),
+    is_running_total: z.boolean().optional().default(false),
+  }),
+  extension_options: z.object({
+    allowed_dimensions: z.array(z.string()).optional().default([]),
+    allowed_granularities: z.array(z.enum(pulseGranularityEnum)).optional().default([]),
+    offset_from_today: z.number().int().optional().default(0),
+  }),
+  representation_options: z
+    .object({
+      type: z.enum(pulseNumberFormatTypeEnum).optional().default('NUMBER_FORMAT_TYPE_NUMBER'),
+      sentiment_type: z.enum(pulseSentimentTypeEnum).optional().default('SENTIMENT_TYPE_NONE'),
+    })
+    .optional()
+    .default({}),
+});
+
+export const createPulseDefinitionResponseSchema = z.object({
+  definition: z.object({
+    metadata: z.object({ id: z.string(), name: z.string() }),
+  }),
+});
+
+export const createPulseMetricRequestSchema = z.object({
+  definition_id: z.string().nonempty(),
+  specification: z.object({
+    filters: z.array(pulseFilterSchema),
+  }),
+});
+
+export const createPulseMetricResponseSchema = z.object({
+  metric: z.object({
+    id: z.string(),
+    definition_id: z.string(),
+    is_default: z.boolean(),
+    specification: z.object({
+      filters: z.array(pulseFilterSchema),
+    }),
+  }),
+  is_metric_created: z.boolean().optional(),
+});
+
+export type CreatePulseDefinitionRequest = z.infer<typeof createPulseDefinitionRequestSchema>;
+export type CreatePulseDefinitionResponse = z.infer<typeof createPulseDefinitionResponseSchema>;
+export type CreatePulseMetricRequest = z.infer<typeof createPulseMetricRequestSchema>;
+export type CreatePulseMetricResponse = z.infer<typeof createPulseMetricResponseSchema>;

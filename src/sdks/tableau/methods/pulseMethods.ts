@@ -7,6 +7,10 @@ import { pulseApis } from '../apis/pulseApi.js';
 import { Credentials } from '../types/credentials.js';
 import { PulsePagination } from '../types/pagination.js';
 import {
+  CreatePulseDefinitionRequest,
+  CreatePulseDefinitionResponse,
+  CreatePulseMetricRequest,
+  CreatePulseMetricResponse,
   pulseBundleRequestSchema,
   PulseBundleResponse,
   pulseInsightBriefRequestSchema,
@@ -164,6 +168,32 @@ export default class PulseMethods extends AuthenticatedMethods<typeof pulseApis>
         this.authHeader,
       );
       return response;
+    });
+  };
+
+  /**
+   * Creates a new Pulse metric definition.
+   *
+   * Required scopes: `tableau:insight_definitions_metrics:create`
+   */
+  createPulseMetricDefinition = async (
+    request: CreatePulseDefinitionRequest,
+  ): Promise<PulseResult<CreatePulseDefinitionResponse>> => {
+    return await guardAgainstPulseDisabled(async () => {
+      return await this._apiClient.createPulseMetricDefinition(request, this.authHeader);
+    });
+  };
+
+  /**
+   * Creates or retrieves a scoped Pulse metric (getOrCreate semantics).
+   *
+   * Required scopes: `tableau:insight_definitions_metrics:update`
+   */
+  createPulseMetric = async (
+    request: CreatePulseMetricRequest,
+  ): Promise<PulseResult<CreatePulseMetricResponse>> => {
+    return await guardAgainstPulseDisabled(async () => {
+      return await this._apiClient.createPulseMetric(request, this.authHeader);
     });
   };
 
