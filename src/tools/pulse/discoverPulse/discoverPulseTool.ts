@@ -236,6 +236,18 @@ focus areas in a single ask. This tool handles those automatically.
             );
           }
 
+          // Compute 'now' by subtracting the max offset_from_today across all metrics.
+          // Metric definitions use offset_from_today to indicate data lag — e.g. offset=1 means
+          // "yesterday is today" because today's data isn't in yet. Without passing 'now',
+          // the Pulse API uses the real current date and finds no data for the current period.
+          const maxOffset = metricContexts.reduce(
+            (max, ctx) => Math.max(max, ctx.metric.extension_options.offset_from_today ?? 0),
+            0,
+          );
+          const nowDate = new Date();
+          nowDate.setDate(nowDate.getDate() - maxOffset);
+          const now = nowDate.toISOString().slice(0, 10); // YYYY-MM-DD
+
           // Step 4: build messages array — thread history then current question
           const resolvedActionType = actionType ?? inferActionType(question);
 
@@ -267,6 +279,7 @@ focus areas in a single ask. This tool handles those automatically.
               restApi.pulseMethods.generatePulseInsightBrief({
                 language,
                 locale,
+                now,
                 messages: [...historyMessages, currentMessage],
               }),
           });
