@@ -183,6 +183,7 @@ If no metric names are provided, all metrics from the same datasource are includ
                 generation_id: _generation_id,
                 insight_feedback_metadata: _ifm,
                 score: _score,
+                markup: _markup,
                 ...rest
               }) => rest,
             ),

@@ -273,6 +273,7 @@ style from question phrasing.
                 generation_id: _generation_id,
                 insight_feedback_metadata: _ifm,
                 score: _score,
+                markup: _markup,
                 ...rest
               }) => rest,
             ),
