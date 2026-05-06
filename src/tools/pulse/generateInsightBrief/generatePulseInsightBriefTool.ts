@@ -100,7 +100,23 @@ export const getGeneratePulseInsightBriefTool = (server: Server): Tool<typeof pa
         constrainSuccessResult: (insightBrief) => {
           return {
             type: 'success',
-            result: insightBrief,
+            result: {
+              ...insightBrief,
+              group_context: undefined,
+              source_insights: insightBrief.source_insights?.map(
+                ({
+                  viz: _viz,
+                  facts: _facts,
+                  table: _table,
+                  id: _id,
+                  generation_id: _generation_id,
+                  insight_feedback_metadata: _ifm,
+                  score: _score,
+                  markup: _markup,
+                  ...rest
+                }) => rest,
+              ),
+            },
           };
         },
         getErrorText: (error) => {
