@@ -3,6 +3,7 @@ import { z } from 'zod';
 
 import { getConfig } from '../../../config.js';
 import { useRestApi } from '../../../restApiInstance.js';
+import { PulseDisabledError } from '../../../sdks/tableau/methods/pulseMethods.js';
 import {
   actionTypeEnumSchema,
   ActionTypeEnumType,
@@ -13,6 +14,7 @@ import {
 import { Server } from '../../../server.js';
 import { getTableauAuthInfo } from '../../../server/oauth/getTableauAuthInfo.js';
 import { Tool } from '../../tool.js';
+import { getPulseDisabledError } from '../getPulseDisabledError.js';
 
 const conversationTurnSchema = z.object({
   role: z.enum(['user', 'assistant']),
@@ -118,10 +120,11 @@ focus areas in a single ask. This tool handles those automatically.
     ): Promise<CallToolResult> => {
       const config = getConfig();
 
-      return await tool.logAndExecute<PulseInsightBriefResponse>({
+      return await tool.logAndExecute<PulseInsightBriefResponse, PulseDisabledError>({
         requestId,
         authInfo,
         args: { question, actionType, metricNames, conversationHistory, language, locale },
+        getErrorText: getPulseDisabledError,
         callback: async () => {
           // Step 1: fetch the user's followed (subscribed) metrics
           const subscriptionsResult = await useRestApi({

@@ -6,7 +6,7 @@ import { Result } from 'ts-results-es';
 import { z, ZodRawShape, ZodTypeAny } from 'zod';
 import { fromError, isZodErrorLike } from 'zod-validation-error';
 
-import { getToolLogMessage, log } from '../logging/log.js';
+import { getToolLogMessage, log, writeToStderr } from '../logging/log.js';
 import { Server } from '../server.js';
 import { tableauAuthInfoSchema } from '../server/oauth/schemas.js';
 import { getTelemetryProvider } from '../telemetry/init.js';
@@ -132,6 +132,7 @@ export class Tool<Args extends ZodRawShape | undefined = undefined> {
     args: unknown;
     username?: string;
   }): void {
+    writeToStderr(`[tool] ${this.name} requestId=${String(requestId)}${username ? ` user=${username}` : ''}`);
     log.debug(
       this.server,
       getToolLogMessage({
