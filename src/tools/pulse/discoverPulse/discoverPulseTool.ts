@@ -2,6 +2,7 @@ import { CallToolResult } from '@modelcontextprotocol/sdk/types.js';
 import { z } from 'zod';
 
 import { getConfig } from '../../../config.js';
+import { writeToStderr } from '../../../logging/log.js';
 import { useRestApi } from '../../../restApiInstance.js';
 import { PulseDisabledError } from '../../../sdks/tableau/methods/pulseMethods.js';
 import {
@@ -240,13 +241,15 @@ focus areas in a single ask. This tool handles those automatically.
           // Metric definitions use offset_from_today to indicate data lag — e.g. offset=1 means
           // "yesterday is today" because today's data isn't in yet. Without passing 'now',
           // the Pulse API uses the real current date and finds no data for the current period.
-          const maxOffset = metricContexts.reduce(
-            (max, ctx) => Math.max(max, ctx.metric.extension_options.offset_from_today ?? 0),
-            0,
-          );
+          const offsets = metricContexts.map((ctx) => ({
+            name: ctx.metadata.name,
+            offset: ctx.metric.extension_options.offset_from_today ?? 0,
+          }));
+          const maxOffset = offsets.reduce((max, o) => Math.max(max, o.offset), 0);
           const nowDate = new Date();
           nowDate.setDate(nowDate.getDate() - maxOffset);
           const now = nowDate.toISOString().slice(0, 10); // YYYY-MM-DD
+          writeToStderr(`[discover-pulse] offsets=${JSON.stringify(offsets)} maxOffset=${maxOffset} now=${now}`);
 
           // Step 4: build messages array — thread history then current question
           const resolvedActionType = actionType ?? inferActionType(question);
