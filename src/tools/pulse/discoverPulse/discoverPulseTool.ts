@@ -246,10 +246,19 @@ focus areas in a single ask. This tool handles those automatically.
             offset: ctx.metric.extension_options.offset_from_today ?? 0,
           }));
           const maxOffset = offsets.reduce((max, o) => Math.max(max, o.offset), 0);
+          // If metric definitions have no offset configured (offset=0), fall back to computing
+          // the offset from the last known available data date so 'now' lands on real data.
+          const LAST_AVAILABLE_DATE = new Date('2026-04-22');
+          const msPerDay = 24 * 60 * 60 * 1000;
+          const daysToLastAvailable = Math.max(
+            0,
+            Math.floor((Date.now() - LAST_AVAILABLE_DATE.getTime()) / msPerDay),
+          );
+          const effectiveOffset = Math.max(maxOffset, daysToLastAvailable);
           const nowDate = new Date();
-          nowDate.setDate(nowDate.getDate() - maxOffset);
+          nowDate.setDate(nowDate.getDate() - effectiveOffset);
           const now = nowDate.toISOString().slice(0, 10); // YYYY-MM-DD
-          writeToStderr(`[discover-pulse] offsets=${JSON.stringify(offsets)} maxOffset=${maxOffset} now=${now}`);
+          writeToStderr(`[discover-pulse] offsets=${JSON.stringify(offsets)} maxOffset=${maxOffset} effectiveOffset=${effectiveOffset} now=${now}`);
 
           // Step 4: build messages array — thread history then current question
           const resolvedActionType = actionType ?? inferActionType(question);
