@@ -52,7 +52,7 @@ const paramsSchema = {
     .enum(pulseAggregationEnum)
     .describe(
       'Aggregation type: SUM, COUNT, COUNTD, AVG, MIN, MAX, or MEDIAN. ' +
-        'Use AGG_TYPE_SUM for revenue/sales, AGG_TYPE_COUNTD for unique counts.',
+        'Use AGGREGATION_SUM for revenue/sales, AGGREGATION_COUNTD for unique counts.',
     ),
 
   timeDimensionField: z
@@ -183,13 +183,12 @@ filters that are AND-ed together; multiple values within one filter are OR-ed:
         },
         getErrorText: getPulseDisabledError,
         callback: async () => {
-          const resolvedGranularities =
-            allowedGranularities && allowedGranularities.length > 0
-              ? allowedGranularities
-              : (['GRANULARITY_DAY', 'GRANULARITY_WEEK', 'GRANULARITY_MONTH', 'GRANULARITY_QUARTER', 'GRANULARITY_YEAR'] as const);
+          // Always send empty - the API defaults granularities server-side
+          const resolvedGranularities: string[] = [];
 
           const definitionPayload = {
             name,
+            description: '',
             specification: {
               datasource: { id: datasourceId },
               basic_specification: {
@@ -197,17 +196,45 @@ filters that are AND-ed together; multiple values within one filter are OR-ed:
                 time_dimension: { field: timeDimensionField },
                 filters: [] as never[],
               },
-              is_running_total: false,
+              is_running_total: true,
+              temporality: 'TEMPORALITY_OVER_TIME',
             },
             extension_options: {
               allowed_dimensions: allowedDimensions ?? [],
               allowed_granularities: [...resolvedGranularities],
               offset_from_today: 0,
+              use_dynamic_offset: false,
             },
             representation_options: {
               type: numberFormat ?? 'NUMBER_FORMAT_TYPE_NUMBER',
               sentiment_type: sentimentType ?? 'SENTIMENT_TYPE_NONE',
             },
+            insights_options: {
+              show_insights: true,
+              settings: [
+                { type: 'INSIGHT_TYPE_RISKY_MONOPOLY', disabled: false },
+                { type: 'INSIGHT_TYPE_TOP_DRIVERS', disabled: false },
+                { type: 'INSIGHT_TYPE_CURRENT_TREND', disabled: false },
+                { type: 'INSIGHT_TYPE_BOTTOM_CONTRIBUTORS', disabled: false },
+                { type: 'INSIGHT_TYPE_TOP_DETRACTORS', disabled: false },
+                { type: 'INSIGHT_TYPE_NEW_TREND', disabled: false },
+                { type: 'INSIGHT_TYPE_UNUSUAL_CHANGE', disabled: false },
+                { type: 'INSIGHT_TYPE_RECORD_LEVEL_OUTLIERS', disabled: true },
+                { type: 'INSIGHT_TYPE_CORRELATED_METRIC', disabled: false },
+                { type: 'INSIGHT_TYPE_METRIC_FORECAST', disabled: false },
+                { type: 'INSIGHT_TYPE_PACE_TO_GOAL', disabled: false },
+                { type: 'INSIGHT_TYPE_TOP_CONTRIBUTORS', disabled: false },
+              ],
+            },
+            comparisons: {
+              comparisons: [
+                { compare_config: { comparison: 'TIME_COMPARISON_PREVIOUS_PERIOD' }, index: 0 },
+                { compare_config: { comparison: 'TIME_COMPARISON_YEAR_AGO_PERIOD' }, index: 1 },
+              ],
+            },
+            datasource_goals: [],
+            related_links: [],
+            certification: { is_certified: false },
           };
 
           const scopePayloads = (scopes ?? []).map((scope) => ({

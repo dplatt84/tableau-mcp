@@ -500,18 +500,18 @@ export const pulseNumberFormatTypeEnum = [
 
 export const pulseSentimentTypeEnum = [
   'SENTIMENT_TYPE_NONE',
-  'SENTIMENT_TYPE_POSITIVE_UP',
-  'SENTIMENT_TYPE_NEGATIVE_UP',
+  'SENTIMENT_TYPE_UP_IS_GOOD',
+  'SENTIMENT_TYPE_DOWN_IS_GOOD',
 ] as const;
 
 export const pulseAggregationEnum = [
-  'AGG_TYPE_SUM',
-  'AGG_TYPE_COUNT',
-  'AGG_TYPE_COUNTD',
-  'AGG_TYPE_AVG',
-  'AGG_TYPE_MIN',
-  'AGG_TYPE_MAX',
-  'AGG_TYPE_MEDIAN',
+  'AGGREGATION_SUM',
+  'AGGREGATION_COUNT',
+  'AGGREGATION_COUNTD',
+  'AGGREGATION_AVG',
+  'AGGREGATION_MIN',
+  'AGGREGATION_MAX',
+  'AGGREGATION_MEDIAN',
 ] as const;
 
 export const pulseGranularityEnum = [
@@ -524,6 +524,7 @@ export const pulseGranularityEnum = [
 
 export const createPulseDefinitionRequestSchema = z.object({
   name: z.string().nonempty(),
+  description: z.string().optional().default(''),
   specification: z.object({
     datasource: z.object({ id: z.string().nonempty() }),
     basic_specification: z.object({
@@ -533,14 +534,16 @@ export const createPulseDefinitionRequestSchema = z.object({
       }),
       time_dimension: z.object({ field: z.string().nonempty() }),
       filters: z.array(pulseFilterSchema).optional().default([]),
-    }),
+    }).passthrough(),
     is_running_total: z.boolean().optional().default(false),
-  }),
+    temporality: z.string().optional().default('TEMPORALITY_OVER_TIME'),
+  }).passthrough(),
   extension_options: z.object({
     allowed_dimensions: z.array(z.string()).optional().default([]),
     allowed_granularities: z.array(z.enum(pulseGranularityEnum)).optional().default([]),
     offset_from_today: z.number().int().optional().default(0),
-  }),
+    use_dynamic_offset: z.boolean().optional().default(false),
+  }).passthrough(),
   representation_options: z
     .object({
       type: z.enum(pulseNumberFormatTypeEnum).optional().default('NUMBER_FORMAT_TYPE_NUMBER'),
@@ -548,7 +551,14 @@ export const createPulseDefinitionRequestSchema = z.object({
     })
     .optional()
     .default({}),
-});
+  insights_options: z.object({
+    show_insights: z.boolean().optional().default(true),
+    settings: z.array(z.any()).optional().default([]),
+  }).optional().default({}),
+  comparisons: z.object({
+    comparisons: z.array(z.any()).optional().default([]),
+  }).optional().default({}),
+}).passthrough();
 
 export const createPulseDefinitionResponseSchema = z.object({
   definition: z.object({
