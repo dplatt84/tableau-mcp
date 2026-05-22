@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Executive Overview - Superstore Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="dashboard">
+    <header class="dashboard-header">
+      <h1>Executive Overview</h1>
+      <p class="subtitle">Profitability (All)</p>
+    </header>
+
+    <aside class="filters-panel">
+      <h3>Filters</h3>
+      <div class="filter-group">
+        <label for="region-filter">Region</label>
+        <select id="region-filter">
+          <option value="all">All</option>
+          <option value="Central">Central</option>
+          <option value="East">East</option>
+          <option value="South">South</option>
+          <option value="West">West</option>
+        </select>
+      </div>
+      <div class="filter-group">
+        <label for="date-start">Order Date Start</label>
+        <input type="date" id="date-start" value="2022-01-01">
+      </div>
+      <div class="filter-group">
+        <label for="date-end">Order Date End</label>
+        <input type="date" id="date-end" value="2025-12-30">
+      </div>
+      <div class="filter-group">
+        <label>Profit Ratio</label>
+        <div class="range-display" id="profit-ratio-range">-21.7% to 37.0%</div>
+      </div>
+      <div class="legend">
+        <span class="legend-label">Profit Ratio</span>
+        <div class="legend-gradient"></div>
+        <div class="legend-labels">
+          <span>-50%</span>
+          <span>0%</span>
+          <span>50%</span>
+        </div>
+      </div>
+    </aside>
+
+    <main class="dashboard-content">
+      <section class="kpi-row">
+        <div class="kpi-card">
+          <span class="kpi-label">Sales</span>
+          <span class="kpi-value" id="kpi-sales">$2,326,534</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Profit</span>
+          <span class="kpi-value" id="kpi-profit">$292,297</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Profit Ratio</span>
+          <span class="kpi-value" id="kpi-profit-ratio">12.6%</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Profit per Order</span>
+          <span class="kpi-value" id="kpi-profit-per-order">$57.19</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Sales per Customer</span>
+          <span class="kpi-value" id="kpi-sales-per-customer">$2,908.17</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Avg. Discount</span>
+          <span class="kpi-value" id="kpi-avg-discount">15.54%</span>
+        </div>
+        <div class="kpi-card">
+          <span class="kpi-label">Quantity</span>
+          <span class="kpi-value" id="kpi-quantity">38,654</span>
+        </div>
+      </section>
+
+      <section class="map-section">
+        <h2>Profit Ratio by State/Province</h2>
+        <div id="map-chart" class="chart-container"></div>
+      </section>
+
+      <section class="charts-row">
+        <div class="chart-panel">
+          <h2>Monthly Sales by Segment</h2>
+          <div id="segment-chart" class="chart-container"></div>
+        </div>
+        <div class="chart-panel">
+          <h2>Monthly Sales by Product Category</h2>
+          <div id="category-chart" class="chart-container"></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.0/dist/echarts.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <script src="data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

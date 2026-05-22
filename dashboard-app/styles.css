@@ -1,0 +1,269 @@
+/* Executive Overview Dashboard - Tableau-style layout
+   Bootstrapped from Tableau DanSuperstoreEmbeddedDS Overview */
+
+:root {
+  /* Tableau light theme */
+  --bg-canvas: #f3f3f3;
+  --bg-sheet: #ffffff;
+  --bg-header: #ffffff;
+  --bg-filter: #f9f9f9;
+  --border: #e0e0e0;
+  --border-light: #ebebeb;
+  --text-primary: #2c2c2c;
+  --text-secondary: #595959;
+  --text-muted: #8c8c8c;
+  /* Tableau 10 palette */
+  --tableau-blue: #4e79a7;
+  --tableau-orange: #f28e2b;
+  --tableau-green: #59a14f;
+  --tableau-red: #e15759;
+  --tableau-teal: #76b7b2;
+  --tableau-yellow: #edc948;
+  --tableau-purple: #b07aa1;
+  --tableau-pink: #ff9da7;
+  --font-sans: "Segoe UI", "Tableau", -apple-system, BlinkMacSystemFont, sans-serif;
+  --radius: 4px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-sans);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  min-height: 100vh;
+  line-height: 1.4;
+  font-size: 12px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 1fr 200px;
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "header filters"
+    "content filters";
+  min-height: 100vh;
+}
+
+/* Tableau-style header - minimal, clean */
+.dashboard-header {
+  grid-area: header;
+  padding: 12px 20px;
+  background: var(--bg-header);
+  border-bottom: 1px solid var(--border);
+}
+
+.dashboard-header h1 {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.subtitle {
+  font-size: 11px;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* Tableau filter panel - compact, right-aligned */
+.filters-panel {
+  grid-area: filters;
+  padding: 12px 14px;
+  background: var(--bg-filter);
+  border-left: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.filters-panel h3 {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.filter-group label {
+  font-size: 11px;
+  color: var(--text-secondary);
+}
+
+.filter-group select,
+.filter-group input {
+  padding: 6px 8px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg-sheet);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: 11px;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+  outline: none;
+  border-color: var(--tableau-blue);
+}
+
+.range-display {
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.legend {
+  margin-top: auto;
+  padding-top: 12px;
+  border-top: 1px solid var(--border);
+}
+
+.legend-label {
+  font-size: 10px;
+  color: var(--text-secondary);
+  display: block;
+  margin-bottom: 6px;
+}
+
+.legend-gradient {
+  height: 6px;
+  border-radius: 3px;
+  background: linear-gradient(
+    to right,
+    var(--tableau-orange),
+    #d4a574,
+    #9e9e9e,
+    var(--tableau-blue)
+  );
+  margin-bottom: 4px;
+}
+
+.legend-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--text-muted);
+}
+
+.dashboard-content {
+  grid-area: content;
+  padding: 16px 20px;
+  overflow-y: auto;
+}
+
+/* Tableau-style KPI cards - compact, white, subtle border */
+.kpi-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.kpi-card {
+  background: var(--bg-sheet);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.kpi-label {
+  font-size: 10px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+.kpi-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* Tableau-style chart titles - small, gray, above chart */
+.map-section,
+.chart-panel {
+  margin-bottom: 16px;
+}
+
+.map-section h2,
+.chart-panel h2 {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+}
+
+/* Tableau sheet style - white background, subtle border */
+.chart-container {
+  width: 100%;
+  min-height: 400px;
+  background: var(--bg-sheet);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius);
+  padding: 12px;
+}
+
+.segment-chart-wrapper,
+.category-chart-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+#map-chart {
+  height: 450px;
+}
+
+/* Tableau dashboard layout - side-by-side sheets */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.chart-panel {
+  min-width: 0;
+}
+
+@media (max-width: 1200px) {
+  .kpi-row {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "header"
+      "filters"
+      "content";
+  }
+
+  .filters-panel {
+    border-left: none;
+    border-bottom: 1px solid var(--border);
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .kpi-row {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

@@ -19,3 +19,4 @@ tableau-mcp.mcpb
 *.tar.gz
 *.zip
 .cursor/.env.dev
+.cursor/mcp.json

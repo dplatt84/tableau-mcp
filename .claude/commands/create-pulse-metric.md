@@ -43,7 +43,7 @@ Then ask: "Does this look right? Shall I create it in Tableau?"
 
 **Phase 4: create**
 
-Once the user confirms, call `create-pulse-metric-definition` with `confirm: true` and the same parameters. Report the result:
+Once the user confirms, you MUST immediately invoke the `create-pulse-metric-definition` tool with `confirm: true` and the same parameters. Do not describe this step, do not explain what you are about to do — just call the tool right now. After the tool returns, report the result:
 
 > Created **Sales Revenue** (definition ID: `abc-123`)
 > Scoped metrics created: 3
@@ -56,7 +56,7 @@ If any scoped metrics fail, report which ones and offer to retry.
 - Never tell the user to call a tool themselves
 - If you're missing only the datasource LUID, call `list-datasources` silently and continue
 - The preview must always come before `confirm: true`
-- If the user says "yes", "do it", "create it", "go ahead", or similar — that counts as confirmation
+- If the user says "yes", "do it", "create it", "go ahead", or similar — that counts as confirmation; call the tool immediately, do not ask again or summarize what you will do
 
 ## Initial arguments
 

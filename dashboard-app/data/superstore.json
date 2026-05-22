@@ -1,0 +1,1005 @@
+{
+  "summary": {
+    "sales": 2931010.2621999527,
+    "profit": 366029.30240000074,
+    "orderCount": 10194,
+    "customerCount": 804,
+    "quantity": 47791,
+    "avgDiscount": 0.19036492054150603
+  },
+  "stateData": [
+    {
+      "state": "Virginia",
+      "stateCode": "VA",
+      "sales": 76775.79000000002,
+      "profit": 20016.88650000001,
+      "region": "South"
+    },
+    {
+      "state": "Missouri",
+      "stateCode": "MO",
+      "sales": 22205.149999999994,
+      "profit": 6436.210500000001,
+      "region": "Central"
+    },
+    {
+      "state": "Minnesota",
+      "stateCode": "MN",
+      "sales": 29906.150000000016,
+      "profit": 10843.458999999999,
+      "region": "Central"
+    },
+    {
+      "state": "Ohio",
+      "stateCode": "OH",
+      "sales": 96218.97799999996,
+      "profit": -24294.107,
+      "region": "East"
+    },
+    {
+      "state": "Rhode Island",
+      "stateCode": "RH",
+      "sales": 23227.855999999996,
+      "profit": 7258.465099999999,
+      "region": "East"
+    },
+    {
+      "state": "Georgia",
+      "stateCode": "GA",
+      "sales": 53946.18,
+      "profit": 17469.78290000001,
+      "region": "South"
+    },
+    {
+      "state": "Quebec",
+      "stateCode": "QU",
+      "sales": 3826.9600000000005,
+      "profit": 1090.9383,
+      "region": "East"
+    },
+    {
+      "state": "Michigan",
+      "stateCode": "MI",
+      "sales": 78779.00599999998,
+      "profit": 25375.055099999987,
+      "region": "Central"
+    },
+    {
+      "state": "Montana",
+      "stateCode": "MO",
+      "sales": 5633.012,
+      "profit": 1854.1390999999996,
+      "region": "West"
+    },
+    {
+      "state": "Alberta",
+      "stateCode": "AL",
+      "sales": 11460.186,
+      "profit": 2236.1578,
+      "region": "West"
+    },
+    {
+      "state": "Prince Edward Island",
+      "stateCode": "PR",
+      "sales": 1087.9159999999997,
+      "profit": 329.353,
+      "region": "East"
+    },
+    {
+      "state": "Iowa",
+      "stateCode": "IA",
+      "sales": 4579.759999999999,
+      "profit": 1183.8119,
+      "region": "Central"
+    },
+    {
+      "state": "Tennessee",
+      "stateCode": "TN",
+      "sales": 53380.312999999995,
+      "profit": -4426.063799999997,
+      "region": "South"
+    },
+    {
+      "state": "North Dakota",
+      "stateCode": "NO",
+      "sales": 919.91,
+      "profit": 230.14969999999997,
+      "region": "Central"
+    },
+    {
+      "state": "South Dakota",
+      "stateCode": "SO",
+      "sales": 1315.5600000000002,
+      "profit": 394.82830000000007,
+      "region": "Central"
+    },
+    {
+      "state": "Kentucky",
+      "stateCode": "KY",
+      "sales": 39271.01999999999,
+      "profit": 11886.375000000002,
+      "region": "South"
+    },
+    {
+      "state": "Newfoundland and Labrador",
+      "stateCode": "NE",
+      "sales": 515.2,
+      "profit": 186.676,
+      "region": "East"
+    },
+    {
+      "state": "Colorado",
+      "stateCode": "CO",
+      "sales": 48948.504,
+      "profit": -9342.032500000001,
+      "region": "West"
+    },
+    {
+      "state": "Delaware",
+      "stateCode": "DE",
+      "sales": 32399.181999999997,
+      "profit": 11613.7045,
+      "region": "East"
+    },
+    {
+      "state": "Florida",
+      "stateCode": "FL",
+      "sales": 94269.96399999996,
+      "profit": -3612.9242000000054,
+      "region": "South"
+    },
+    {
+      "state": "Saskatchewan",
+      "stateCode": "SA",
+      "sales": 132.398,
+      "profit": 28.539999999999996,
+      "region": "West"
+    },
+    {
+      "state": "Washington",
+      "stateCode": "WA",
+      "sales": 184906.63799999998,
+      "profit": 51215.276199999986,
+      "region": "West"
+    },
+    {
+      "state": "Arkansas",
+      "stateCode": "AR",
+      "sales": 11678.13,
+      "profit": 4008.6870999999996,
+      "region": "South"
+    },
+    {
+      "state": "Pennsylvania",
+      "stateCode": "PA",
+      "sales": 135694.85699999996,
+      "profit": -18256.559999999998,
+      "region": "East"
+    },
+    {
+      "state": "Ontario",
+      "stateCode": "ON",
+      "sales": 7009.0120000000015,
+      "profit": 1880.3966000000003,
+      "region": "East"
+    },
+    {
+      "state": "Connecticut",
+      "stateCode": "CT",
+      "sales": 13384.357,
+      "profit": 3511.4918,
+      "region": "East"
+    },
+    {
+      "state": "California",
+      "stateCode": "CA",
+      "sales": 671594.9800000018,
+      "profit": 116475.31970000014,
+      "region": "West"
+    },
+    {
+      "state": "Oklahoma",
+      "stateCode": "OK",
+      "sales": 19987.02999999999,
+      "profit": 4994.9264,
+      "region": "Central"
+    },
+    {
+      "state": "New Mexico",
+      "stateCode": "NM",
+      "sales": 4840.788,
+      "profit": 1159.4114,
+      "region": "West"
+    },
+    {
+      "state": "New Hampshire",
+      "stateCode": "NE",
+      "sales": 8741.624,
+      "profit": 1995.8391999999997,
+      "region": "East"
+    },
+    {
+      "state": "Alabama",
+      "stateCode": "AL",
+      "sales": 19691.569999999996,
+      "profit": 5833.4063,
+      "region": "South"
+    },
+    {
+      "state": "New York",
+      "stateCode": "NY",
+      "sales": 464693.3849999999,
+      "profit": 112383.0851,
+      "region": "East"
+    },
+    {
+      "state": "Vermont",
+      "stateCode": "VE",
+      "sales": 8929.369999999999,
+      "profit": 2244.9782999999998,
+      "region": "East"
+    },
+    {
+      "state": "Texas",
+      "stateCode": "TX",
+      "sales": 193727.48819999973,
+      "profit": -45683.17210000006,
+      "region": "Central"
+    },
+    {
+      "state": "Utah",
+      "stateCode": "UT",
+      "sales": 22619.276,
+      "profit": 5707.361900000002,
+      "region": "West"
+    },
+    {
+      "state": "District of Columbia",
+      "stateCode": "DC",
+      "sales": 2865.02,
+      "profit": 1059.5893,
+      "region": "East"
+    },
+    {
+      "state": "West Virginia",
+      "stateCode": "WE",
+      "sales": 1209.824,
+      "profit": 185.9216,
+      "region": "East"
+    },
+    {
+      "state": "Nevada",
+      "stateCode": "NV",
+      "sales": 16729.101999999995,
+      "profit": 3316.7658999999994,
+      "region": "West"
+    },
+    {
+      "state": "Kansas",
+      "stateCode": "KS",
+      "sales": 2914.31,
+      "profit": 836.4434999999997,
+      "region": "Central"
+    },
+    {
+      "state": "Louisiana",
+      "stateCode": "LA",
+      "sales": 9217.029999999999,
+      "profit": 2196.1023000000005,
+      "region": "South"
+    },
+    {
+      "state": "Indiana",
+      "stateCode": "IN",
+      "sales": 53555.360000000015,
+      "profit": 18382.936299999987,
+      "region": "Central"
+    },
+    {
+      "state": "Arizona",
+      "stateCode": "AZ",
+      "sales": 51218.44699999997,
+      "profit": -5853.9193000000005,
+      "region": "West"
+    },
+    {
+      "state": "South Carolina",
+      "stateCode": "SC",
+      "sales": 8481.710000000001,
+      "profit": 1769.0566000000003,
+      "region": "South"
+    },
+    {
+      "state": "New Brunswick",
+      "stateCode": "NE",
+      "sales": 225.69600000000003,
+      "profit": -74.14159999999998,
+      "region": "East"
+    },
+    {
+      "state": "Wyoming",
+      "stateCode": "WY",
+      "sales": 1603.1360000000002,
+      "profit": 100.19599999999997,
+      "region": "West"
+    },
+    {
+      "state": "Maryland",
+      "stateCode": "MD",
+      "sales": 25246.823,
+      "profit": 7400.4108,
+      "region": "East"
+    },
+    {
+      "state": "Manitoba",
+      "stateCode": "MA",
+      "sales": 1930.7820000000002,
+      "profit": 158.94449999999995,
+      "region": "Central"
+    },
+    {
+      "state": "Oregon",
+      "stateCode": "OR",
+      "sales": 22513.28599999999,
+      "profit": -3148.0525000000002,
+      "region": "West"
+    },
+    {
+      "state": "New Jersey",
+      "stateCode": "NJ",
+      "sales": 36236.25199999999,
+      "profit": 9974.7778,
+      "region": "East"
+    },
+    {
+      "state": "Wisconsin",
+      "stateCode": "WI",
+      "sales": 32735.72000000002,
+      "profit": 8602.3721,
+      "region": "Central"
+    },
+    {
+      "state": "Massachusetts",
+      "stateCode": "MA",
+      "sales": 40838.759,
+      "profit": 9974.956900000001,
+      "region": "East"
+    },
+    {
+      "state": "Illinois",
+      "stateCode": "IL",
+      "sales": 83461.96600000004,
+      "profit": -13375.530700000008,
+      "region": "Central"
+    },
+    {
+      "state": "Idaho",
+      "stateCode": "ID",
+      "sales": 5383.682,
+      "profit": 1009.7578999999998,
+      "region": "West"
+    },
+    {
+      "state": "Nova Scotia",
+      "stateCode": "NO",
+      "sales": 382.144,
+      "profit": -52.74200000000001,
+      "region": "East"
+    },
+    {
+      "state": "British Columbia",
+      "stateCode": "BR",
+      "sales": 2763.2,
+      "profit": 115.67029999999988,
+      "region": "West"
+    },
+    {
+      "state": "Maine",
+      "stateCode": "MA",
+      "sales": 1270.53,
+      "profit": 454.4862,
+      "region": "East"
+    },
+    {
+      "state": "Nebraska",
+      "stateCode": "NE",
+      "sales": 7464.93,
+      "profit": 2037.0942000000002,
+      "region": "Central"
+    },
+    {
+      "state": "North Carolina",
+      "stateCode": "NC",
+      "sales": 65279.71299999998,
+      "profit": -6615.872200000005,
+      "region": "South"
+    },
+    {
+      "state": "Mississippi",
+      "stateCode": "MS",
+      "sales": 11185.34,
+      "profit": 3344.225399999999,
+      "region": "South"
+    }
+  ],
+  "monthlySalesBySegment": [
+    {
+      "month": "2022-01",
+      "Home Office": 5607.55,
+      "Corporate": 1982.6880000000003,
+      "Consumer": 7435.377
+    },
+    {
+      "month": "2022-02",
+      "Home Office": 179.73400000000004,
+      "Corporate": 1183.6680000000001,
+      "Consumer": 2698.9539999999997
+    },
+    {
+      "month": "2022-03",
+      "Corporate": 11520.798999999995,
+      "Consumer": 11869.304,
+      "Home Office": 33957.806
+    },
+    {
+      "month": "2022-04",
+      "Consumer": 9108.612000000003,
+      "Corporate": 14731.698999999995,
+      "Home Office": 5089.003999999999
+    },
+    {
+      "month": "2022-05",
+      "Consumer": 14091.442999999994,
+      "Home Office": 3267.254000000001,
+      "Corporate": 10294.467999999999
+    },
+    {
+      "month": "2022-06",
+      "Consumer": 25923.7476,
+      "Corporate": 3970.914,
+      "Home Office": 4774.818
+    },
+    {
+      "month": "2022-07",
+      "Consumer": 34838.332,
+      "Home Office": 3715.665,
+      "Corporate": 10614.092
+    },
+    {
+      "month": "2022-08",
+      "Home Office": 4242.4310000000005,
+      "Corporate": 11218.513999999997,
+      "Consumer": 30719.421500000004
+    },
+    {
+      "month": "2022-09",
+      "Corporate": 23539.933,
+      "Consumer": 91319.842,
+      "Home Office": 6578.955799999999
+    },
+    {
+      "month": "2022-10",
+      "Corporate": 13564.923999999995,
+      "Home Office": 2601.7179999999994,
+      "Consumer": 16832.442999999996
+    },
+    {
+      "month": "2022-11",
+      "Home Office": 11617.383999999998,
+      "Corporate": 25821.192699999996,
+      "Consumer": 46715.106
+    },
+    {
+      "month": "2022-12",
+      "Corporate": 30293.224,
+      "Consumer": 39811.5505,
+      "Home Office": 13515.838
+    },
+    {
+      "month": "2023-01",
+      "Corporate": 10968.626,
+      "Home Office": 560.288,
+      "Consumer": 14274.9836
+    },
+    {
+      "month": "2023-02",
+      "Consumer": 11778.938,
+      "Home Office": 117.13600000000001,
+      "Corporate": 3165.1569999999997
+    },
+    {
+      "month": "2023-03",
+      "Home Office": 8650.339600000001,
+      "Consumer": 17743.034000000003,
+      "Corporate": 16332.0184
+    },
+    {
+      "month": "2023-04",
+      "Consumer": 25998.403499999997,
+      "Corporate": 5968.114000000001,
+      "Home Office": 8613.599
+    },
+    {
+      "month": "2023-05",
+      "Consumer": 36056.028999999995,
+      "Home Office": 3797.5679999999998,
+      "Corporate": 5980.379500000001
+    },
+    {
+      "month": "2023-06",
+      "Home Office": 2568.6989999999996,
+      "Consumer": 12824.504,
+      "Corporate": 10031.752999999999
+    },
+    {
+      "month": "2023-07",
+      "Consumer": 19948.813000000002,
+      "Corporate": 7191.699999999998,
+      "Home Office": 1624.8119999999997
+    },
+    {
+      "month": "2023-08",
+      "Consumer": 27666.835,
+      "Corporate": 12123.137200000003,
+      "Home Office": 6749.182000000001
+    },
+    {
+      "month": "2023-09",
+      "Home Office": 9131.083999999999,
+      "Corporate": 16874.551,
+      "Consumer": 44187.85499999999
+    },
+    {
+      "month": "2023-10",
+      "Home Office": 5631.896,
+      "Consumer": 40455.3065,
+      "Corporate": 9118.309000000001
+    },
+    {
+      "month": "2023-11",
+      "Corporate": 33325.28680000001,
+      "Consumer": 38072.94670000001,
+      "Home Office": 15526.085999999998
+    },
+    {
+      "month": "2023-12",
+      "Home Office": 19110.089200000002,
+      "Corporate": 17464.56499999999,
+      "Consumer": 62701.30500000002
+    },
+    {
+      "month": "2024-01",
+      "Corporate": 9922.863999999996,
+      "Consumer": 6431.993,
+      "Home Office": 4668.722
+    },
+    {
+      "month": "2024-02",
+      "Corporate": 3026.8679999999995,
+      "Home Office": 4311.704,
+      "Consumer": 21926.049
+    },
+    {
+      "month": "2024-03",
+      "Home Office": 13894.351,
+      "Consumer": 23724.599999999995,
+      "Corporate": 14408.229
+    },
+    {
+      "month": "2024-04",
+      "Corporate": 16408.190000000002,
+      "Consumer": 13485.90599999999,
+      "Home Office": 14843.666999999998
+    },
+    {
+      "month": "2024-05",
+      "Home Office": 10049.399,
+      "Consumer": 36653.159,
+      "Corporate": 26004.657999999992
+    },
+    {
+      "month": "2024-06",
+      "Consumer": 28445.784999999993,
+      "Corporate": 9441.29,
+      "Home Office": 11641.572000000004
+    },
+    {
+      "month": "2024-07",
+      "Consumer": 24096.475,
+      "Home Office": 1822.3210000000001,
+      "Corporate": 23968.635000000002
+    },
+    {
+      "month": "2024-08",
+      "Consumer": 18603.346799999996,
+      "Home Office": 9041.446,
+      "Corporate": 12214.120499999999
+    },
+    {
+      "month": "2024-09",
+      "Corporate": 17984.06229999999,
+      "Consumer": 60761.922600000034,
+      "Home Office": 8507.953000000003
+    },
+    {
+      "month": "2024-10",
+      "Home Office": 20372.228,
+      "Corporate": 32342.712999999992,
+      "Consumer": 12950.150000000001
+    },
+    {
+      "month": "2024-11",
+      "Home Office": 12411.053000000002,
+      "Consumer": 47788.8048,
+      "Corporate": 28549.79800000001
+    },
+    {
+      "month": "2024-12",
+      "Consumer": 70434.34799999997,
+      "Home Office": 15129.679999999997,
+      "Corporate": 35162.12000000001
+    },
+    {
+      "month": "2025-01",
+      "Home Office": 9097.099000000002,
+      "Corporate": 12509.072,
+      "Consumer": 22433.957000000002
+    },
+    {
+      "month": "2025-02",
+      "Corporate": 9011.17,
+      "Consumer": 6349.349000000001,
+      "Home Office": 20991.090400000005
+    },
+    {
+      "month": "2025-03",
+      "Corporate": 30903.680800000002,
+      "Consumer": 65370.84199999999,
+      "Home Office": 8523.156
+    },
+    {
+      "month": "2025-04",
+      "Home Office": 12732.497499999998,
+      "Corporate": 9376.4022,
+      "Consumer": 16269.526000000002
+    },
+    {
+      "month": "2025-05",
+      "Consumer": 17514.9294,
+      "Corporate": 18802.974800000004,
+      "Home Office": 9787.57
+    },
+    {
+      "month": "2025-06",
+      "Consumer": 20715.259199999993,
+      "Home Office": 15375.199999999995,
+      "Corporate": 32977.064
+    },
+    {
+      "month": "2025-07",
+      "Corporate": 23397.390000000007,
+      "Consumer": 20607.929999999997,
+      "Home Office": 9925.534000000003
+    },
+    {
+      "month": "2025-08",
+      "Corporate": 66829.192,
+      "Consumer": 42634.78999999999,
+      "Home Office": 5820.879999999999
+    },
+    {
+      "month": "2025-09",
+      "Corporate": 42047.894,
+      "Consumer": 145947.65299999993,
+      "Home Office": 23111.445999999993
+    },
+    {
+      "month": "2025-10",
+      "Home Office": 28152.037000000004,
+      "Consumer": 35982.906200000005,
+      "Corporate": 34641.920000000006
+    },
+    {
+      "month": "2025-11",
+      "Home Office": 29515.721999999998,
+      "Corporate": 47239.79419999999,
+      "Consumer": 56288.414799999984
+    },
+    {
+      "month": "2025-12",
+      "Corporate": 20841.607999999993,
+      "Consumer": 55926.41460000002,
+      "Home Office": 14345.978999999996
+    }
+  ],
+  "monthlySalesByCategory": [
+    {
+      "month": "2022-01",
+      "Technology": 3821.69,
+      "Office Supplies": 4876.92,
+      "Furniture": 6327.005
+    },
+    {
+      "month": "2022-02",
+      "Technology": 1139.6100000000001,
+      "Furniture": 1839.658,
+      "Office Supplies": 1083.0880000000002
+    },
+    {
+      "month": "2022-03",
+      "Furniture": 15816.855999999998,
+      "Office Supplies": 9019.878999999995,
+      "Technology": 32511.174000000003
+    },
+    {
+      "month": "2022-04",
+      "Technology": 9195.433999999997,
+      "Office Supplies": 11413.833999999993,
+      "Furniture": 8320.047000000002
+    },
+    {
+      "month": "2022-05",
+      "Furniture": 9085.939,
+      "Office Supplies": 7872.083999999997,
+      "Technology": 10695.141999999998
+    },
+    {
+      "month": "2022-06",
+      "Furniture": 13206.125599999998,
+      "Office Supplies": 13027.388999999996,
+      "Technology": 8435.965
+    },
+    {
+      "month": "2022-07",
+      "Furniture": 11278.785,
+      "Technology": 11311.702000000001,
+      "Office Supplies": 26577.60199999999
+    },
+    {
+      "month": "2022-08",
+      "Technology": 12796.320000000003,
+      "Furniture": 10808.460500000001,
+      "Office Supplies": 22575.586000000007
+    },
+    {
+      "month": "2022-09",
+      "Office Supplies": 37861.726,
+      "Technology": 53357.462,
+      "Furniture": 30219.5428
+    },
+    {
+      "month": "2022-10",
+      "Furniture": 13569.811000000002,
+      "Office Supplies": 7348.572,
+      "Technology": 12080.702
+    },
+    {
+      "month": "2022-11",
+      "Office Supplies": 31934.02199999999,
+      "Technology": 30296.140000000003,
+      "Furniture": 21923.5207
+    },
+    {
+      "month": "2022-12",
+      "Technology": 29236.459999999995,
+      "Furniture": 33349.17650000001,
+      "Office Supplies": 21034.976000000002
+    },
+    {
+      "month": "2023-01",
+      "Technology": 10197.118000000002,
+      "Office Supplies": 1991.858,
+      "Furniture": 13614.921600000001
+    },
+    {
+      "month": "2023-02",
+      "Furniture": 3628.294,
+      "Technology": 3554.9499999999994,
+      "Office Supplies": 7877.986999999999
+    },
+    {
+      "month": "2023-03",
+      "Office Supplies": 16478.547000000002,
+      "Furniture": 13742.679000000002,
+      "Technology": 12504.166
+    },
+    {
+      "month": "2023-04",
+      "Furniture": 12871.978500000001,
+      "Office Supplies": 13901.627999999999,
+      "Technology": 13806.510000000002
+    },
+    {
+      "month": "2023-05",
+      "Office Supplies": 11307.686000000002,
+      "Technology": 24278.624,
+      "Furniture": 10247.6665
+    },
+    {
+      "month": "2023-06",
+      "Office Supplies": 10653.650999999998,
+      "Technology": 6435.366,
+      "Furniture": 8335.938999999998
+    },
+    {
+      "month": "2023-07",
+      "Technology": 10370.966,
+      "Office Supplies": 4719.939,
+      "Furniture": 13674.42
+    },
+    {
+      "month": "2023-08",
+      "Furniture": 12146.5822,
+      "Technology": 21164.51199999999,
+      "Office Supplies": 13228.06
+    },
+    {
+      "month": "2023-09",
+      "Office Supplies": 21533.82899999999,
+      "Furniture": 27882.56499999999,
+      "Technology": 20777.095999999998
+    },
+    {
+      "month": "2023-10",
+      "Furniture": 20471.8055,
+      "Office Supplies": 13107.237999999998,
+      "Technology": 21626.468
+    },
+    {
+      "month": "2023-11",
+      "Technology": 27999.159,
+      "Furniture": 35699.76249999999,
+      "Office Supplies": 23225.397999999997
+    },
+    {
+      "month": "2023-12",
+      "Office Supplies": 19960.89599999999,
+      "Furniture": 27120.1692,
+      "Technology": 52194.894000000015
+    },
+    {
+      "month": "2024-01",
+      "Technology": 6734.642000000001,
+      "Office Supplies": 5560.138,
+      "Furniture": 8728.799
+    },
+    {
+      "month": "2024-02",
+      "Technology": 17318.828,
+      "Furniture": 4762.142999999999,
+      "Office Supplies": 7183.649999999999
+    },
+    {
+      "month": "2024-03",
+      "Furniture": 14604.226,
+      "Technology": 18083.066,
+      "Office Supplies": 19339.887999999995
+    },
+    {
+      "month": "2024-04",
+      "Technology": 14942.381999999998,
+      "Furniture": 18160.345999999998,
+      "Office Supplies": 11635.034999999996
+    },
+    {
+      "month": "2024-05",
+      "Technology": 31592.691000000003,
+      "Office Supplies": 21737.188000000006,
+      "Furniture": 19377.337000000007
+    },
+    {
+      "month": "2024-06",
+      "Technology": 19090.921000000002,
+      "Furniture": 15991.498,
+      "Office Supplies": 14446.227999999996
+    },
+    {
+      "month": "2024-07",
+      "Technology": 12777.937999999998,
+      "Office Supplies": 18298.345999999994,
+      "Furniture": 18811.147
+    },
+    {
+      "month": "2024-08",
+      "Technology": 9796.412,
+      "Office Supplies": 16183.685999999998,
+      "Furniture": 13878.815299999998
+    },
+    {
+      "month": "2024-09",
+      "Furniture": 33381.944899999995,
+      "Office Supplies": 20753.70499999999,
+      "Technology": 33118.288
+    },
+    {
+      "month": "2024-10",
+      "Office Supplies": 19481.635999999995,
+      "Technology": 33817.164,
+      "Furniture": 12366.291
+    },
+    {
+      "month": "2024-11",
+      "Technology": 28592.915999999994,
+      "Furniture": 35646.41379999999,
+      "Office Supplies": 24510.326000000015
+    },
+    {
+      "month": "2024-12",
+      "Technology": 24030.396,
+      "Furniture": 53782.46199999999,
+      "Office Supplies": 42913.28999999999
+    },
+    {
+      "month": "2025-01",
+      "Office Supplies": 21076.639,
+      "Technology": 17630.459,
+      "Furniture": 5333.030000000002
+    },
+    {
+      "month": "2025-02",
+      "Furniture": 17124.4654,
+      "Office Supplies": 8805.672,
+      "Technology": 10421.472000000002
+    },
+    {
+      "month": "2025-03",
+      "Furniture": 13728.5168,
+      "Technology": 70498.26199999999,
+      "Office Supplies": 20570.900000000012
+    },
+    {
+      "month": "2025-04",
+      "Furniture": 14050.715699999999,
+      "Technology": 8982.777,
+      "Office Supplies": 15344.933000000003
+    },
+    {
+      "month": "2025-05",
+      "Technology": 14143.124000000007,
+      "Furniture": 15357.156199999998,
+      "Office Supplies": 16605.193999999996
+    },
+    {
+      "month": "2025-06",
+      "Technology": 32307.756,
+      "Furniture": 19941.728199999994,
+      "Office Supplies": 16818.03900000001
+    },
+    {
+      "month": "2025-07",
+      "Office Supplies": 10638.592,
+      "Technology": 26845.261999999995,
+      "Furniture": 16447
+    },
+    {
+      "month": "2025-08",
+      "Office Supplies": 66008.89400000001,
+      "Technology": 25174.73800000001,
+      "Furniture": 24101.23
+    },
+    {
+      "month": "2025-09",
+      "Technology": 69685.47899999999,
+      "Furniture": 104029.478,
+      "Office Supplies": 37392.03599999999
+    },
+    {
+      "month": "2025-10",
+      "Office Supplies": 37402.912000000004,
+      "Furniture": 28976.1022,
+      "Technology": 32397.849000000006
+    },
+    {
+      "month": "2025-11",
+      "Technology": 59252.81899999998,
+      "Furniture": 38110.81100000001,
+      "Office Supplies": 35680.30100000002
+    },
+    {
+      "month": "2025-12",
+      "Technology": 23096.77400000001,
+      "Furniture": 34946.45759999999,
+      "Office Supplies": 33070.76999999998
+    }
+  ]
+}
